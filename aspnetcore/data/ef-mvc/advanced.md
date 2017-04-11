@@ -165,6 +165,15 @@ Although the source code is open, Entity Framework Core is fully supported as a 
 
 To reverse engineer a data model including entity classes from an existing database, use the [scaffold-dbcontext](https://docs.microsoft.com/ef/core/miscellaneous/cli/powershell#scaffold-dbcontext) command. See the [getting-started tutorial](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db).
 
+<a id="expression-trees">
+## Use expression trees to write dynamic LINQ
+
+The [third tutorial in this series](sort-filter-page.md) shows how to write LINQ code by hard-coding column names in a `switch` statement. With two columns to choose from, this works fine, but if you have many columns the code could get verbose. To solve that problem, you can use [expression trees](https://docs.microsoft.com/dotnet/articles/csharp/expression-trees-building). You can try out this approach by replacing the `Index` method in the `StudentsController` with the following code:
+
+[!code-csharp[Main](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_DynamicLinq)]
+
+This code requires `using` statements for `System.Linq.Expressions` and `System.Reflection`.
+
 ## Summary
 
 This completes this series of tutorials on using the Entity Framework Core in an ASP.NET MVC application. For more information about how to work with data using the Entity Framework Core, see the [EF documentation](https://docs.microsoft.com/ef/core).
